@@ -12,4 +12,5 @@ namespace LiteNinja.SOEvents
             awakeEvent.Invoke();
         }
     }
+    
 }
