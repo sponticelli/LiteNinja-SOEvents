@@ -5,11 +5,13 @@ using UnityEngine;
 
 namespace LiteNinja.SOEvents
 {
-    public class SOEvent<T> : DescribedSO, ISerializationCallbackReceiver
+  
+
+    public abstract class ASOEvent<T> : DescribedSO, ISerializationCallbackReceiver
     {
         [SerializeField] private bool _raiseOnAdd;
 
-        [NonSerialized] private readonly List<SOEventListener<T>> _eventListeners = new();
+        [NonSerialized] private readonly List<ASOEventListener<T>> _eventListeners = new();
         [NonSerialized] private readonly List<Action<T>> _listeners = new();
 
         public bool HasLastParameter { get; private set; }
@@ -25,7 +27,7 @@ namespace LiteNinja.SOEvents
             }
             foreach (var listener in _eventListeners)
             {
-                listener.Raise(parameter);
+                listener.OnEventRaised(parameter);
             }
             
             if (!_raiseOnAdd) return;
@@ -34,27 +36,27 @@ namespace LiteNinja.SOEvents
         }
         
         #region Register/unregister listeners
-        public void RegisterListener(SOEventListener<T> listener)
+        public void Register(ASOEventListener<T> listener)
         {
             if (listener == null) return;
             _eventListeners.Add(listener);
-            if (_raiseOnAdd && HasLastParameter) listener.Raise(LastParameter);
+            if (_raiseOnAdd && HasLastParameter) listener.OnEventRaised(LastParameter);
         }
         
-        public void RegisterListener(Action<T> listener)
+        public void Register(Action<T> listener)
         {
             if (listener == null) return;
             _listeners.Add(listener);
             if (_raiseOnAdd && HasLastParameter) listener.Invoke(LastParameter);
         }
 
-        public void UnregisterListener(SOEventListener<T> listener)
+        public void Unregister(ASOEventListener<T> listener)
         {
             if (listener == null) return;
             _eventListeners.Remove(listener);
         }
         
-        public void UnregisterListener(Action<T> listener)
+        public void Unregister(Action<T> listener)
         {
             if (listener == null) return;
             _listeners.Remove(listener);

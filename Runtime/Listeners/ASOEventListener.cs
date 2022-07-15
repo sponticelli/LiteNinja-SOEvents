@@ -1,27 +1,28 @@
 using System;
+using LiteNinja.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace LiteNinja.SOEvents
 {
     [Serializable]
-    public abstract class SOEventListener<T> : MonoBehaviour
+    public abstract class ASOEventListener<T> : MonoBehaviour
     {
-        protected abstract SOEvent<T> Event { get; }
+        protected abstract ASOEvent<T> Event { get; }
         protected abstract UnityEvent<T> Action { get; }
         
         
         private void OnEnable()
         {
-            Event?.RegisterListener(this);
+            Event?.Register(this);
         }
         
         private void OnDisable()
         {
-            Event?.UnregisterListener(this);
+            Event?.Unregister(this);
         }
         
-        public void Raise(T data)
+        public void OnEventRaised(T data)
         {
             Action?.Invoke(data);
         }
@@ -33,7 +34,7 @@ namespace LiteNinja.SOEvents
         {
             //if event has parameter, raise it again
             if (Event.HasLastParameter)
-                Raise(Event.LastParameter);
+                OnEventRaised(Event.LastParameter);
         }
     }
 }
