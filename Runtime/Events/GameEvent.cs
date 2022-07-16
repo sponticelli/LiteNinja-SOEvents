@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using LiteNinja.Utils;
 using UnityEngine;
 
 namespace LiteNinja.SOEvents
 {
     [CreateAssetMenu(menuName = "LiteNinja/Events/Game Event")]
-    public class GameEvent : ScriptableObject
+    [Serializable]
+    public class GameEvent : DescribedSO
     {
         [NonSerialized] private readonly List<GameEventListener> _eventListeners = new();
         [NonSerialized] private readonly List<Action> _listeners = new();

@@ -30,7 +30,6 @@ namespace LiteNinja.SOEvents
                 listener.OnEventRaised(parameter);
             }
             
-            if (!_raiseOnAdd) return;
             HasLastParameter = true;
             LastParameter = parameter;
         }
@@ -66,14 +65,14 @@ namespace LiteNinja.SOEvents
 
         #region Serialization
 
-        public void OnBeforeSerialize()
+        public virtual void OnBeforeSerialize()
         {
-            throw new System.NotImplementedException();
+            
         }
 
-        public void OnAfterDeserialize()
+        public virtual void OnAfterDeserialize()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         #endregion
