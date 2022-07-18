@@ -1,6 +1,6 @@
 {
   "name": "com.liteninja.soevents",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "LiteNinja SO Events",
   "description": "A Scriptable Object events library for Unity3d",
   "unity": "2019.1",
