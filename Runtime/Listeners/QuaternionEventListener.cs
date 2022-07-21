@@ -8,7 +8,7 @@ namespace LiteNinja.SOEvents
     {
         [SerializeField] protected QuaternionEvent _event;
         [SerializeField] protected UnityEventQuaternion _action;
-        
+
         protected override ASOEvent<Quaternion> Event => _event;
         protected override UnityEvent<Quaternion> Action => _action;
     }

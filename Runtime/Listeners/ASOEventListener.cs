@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace LiteNinja.SOEvents
 {
     [Serializable]
-    public abstract class ASOEventListener<T> : MonoBehaviour
+    public abstract class ASOEventListener<T> : MonoBehaviour, IEventListener<T>
     {
         protected abstract ASOEvent<T> Event { get; }
         protected abstract UnityEvent<T> Action { get; }

@@ -8,7 +8,7 @@ namespace LiteNinja.SOEvents
     {
         [SerializeField] protected ComponentEvent _event;
         [SerializeField] protected UnityEventComponent _action;
-        
+
         protected override ASOEvent<Component> Event => _event;
         protected override UnityEvent<Component> Action => _action;
     }

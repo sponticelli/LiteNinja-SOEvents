@@ -8,7 +8,7 @@ namespace LiteNinja.SOEvents
     {
         [SerializeField] protected ColorEvent _event;
         [SerializeField] protected UnityEventColor _action;
-        
+
         protected override ASOEvent<Color> Event => _event;
         protected override UnityEvent<Color> Action => _action;
     }

@@ -7,7 +7,7 @@ namespace LiteNinja.SOEvents
 {
   
 
-    public abstract class ASOEvent<T> : DescribedSO, ISerializationCallbackReceiver
+    public abstract class ASOEvent<T> : DescribedSO, ISerializationCallbackReceiver, IEvent<T>
     {
         [SerializeField] private bool _raiseOnAdd;
 

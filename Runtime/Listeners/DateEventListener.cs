@@ -9,7 +9,7 @@ namespace LiteNinja.SOEvents
     { 
         [SerializeField] protected DateTimeEvent _event;
         [SerializeField] protected UnityEventDateTime _action;
-        
+
         protected override ASOEvent<DateTime> Event => _event;
         protected override UnityEvent<DateTime> Action => _action;
     }
